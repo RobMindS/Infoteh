@@ -7,23 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8464A57C2887172F001384F2 /* city_list.json in Resources */ = {isa = PBXBuildFile; fileRef = 8464A57B2887172F001384F2 /* city_list.json */; };
+		8464A57F28871DF3001384F2 /* UIImageView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464A57E28871DF3001384F2 /* UIImageView+Helpers.swift */; };
+		8464A581288722A2001384F2 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464A580288722A2001384F2 /* CityDetailViewController.swift */; };
+		84DBFC6128895276002BBDC7 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBFC6028895276002BBDC7 /* WebService.swift */; };
+		84DBFC63288953D0002BBDC7 /* CityWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DBFC62288953D0002BBDC7 /* CityWeatherModel.swift */; };
 		84EBF8322887037A0009FA8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF8312887037A0009FA8C /* AppDelegate.swift */; };
 		84EBF8342887037A0009FA8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF8332887037A0009FA8C /* SceneDelegate.swift */; };
-		84EBF8362887037A0009FA8C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF8352887037A0009FA8C /* ViewController.swift */; };
+		84EBF8362887037A0009FA8C /* СitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF8352887037A0009FA8C /* СitiesViewController.swift */; };
 		84EBF8392887037A0009FA8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84EBF8372887037A0009FA8C /* Main.storyboard */; };
 		84EBF83B2887037C0009FA8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84EBF83A2887037C0009FA8C /* Assets.xcassets */; };
 		84EBF83E2887037C0009FA8C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84EBF83C2887037C0009FA8C /* LaunchScreen.storyboard */; };
+		84EBF84C288707AE0009FA8C /* PairedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF84B288707AE0009FA8C /* PairedTableViewCell.swift */; };
+		84EBF84E288707CB0009FA8C /* UnpairedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF84D288707CB0009FA8C /* UnpairedTableViewCell.swift */; };
+		84EBF851288709750009FA8C /* СityListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF850288709750009FA8C /* СityListModel.swift */; };
+		84EBF85428870BDF0009FA8C /* JsonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EBF85328870BDF0009FA8C /* JsonService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8464A57B2887172F001384F2 /* city_list.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city_list.json; sourceTree = "<group>"; };
+		8464A57E28871DF3001384F2 /* UIImageView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Helpers.swift"; sourceTree = "<group>"; };
+		8464A580288722A2001384F2 /* CityDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
+		84DBFC6028895276002BBDC7 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		84DBFC62288953D0002BBDC7 /* CityWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherModel.swift; sourceTree = "<group>"; };
 		84EBF82E2887037A0009FA8C /* Infoteh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Infoteh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84EBF8312887037A0009FA8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84EBF8332887037A0009FA8C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		84EBF8352887037A0009FA8C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		84EBF8352887037A0009FA8C /* СitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СitiesViewController.swift"; sourceTree = "<group>"; };
 		84EBF8382887037A0009FA8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84EBF83A2887037C0009FA8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84EBF83D2887037C0009FA8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84EBF83F2887037C0009FA8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84EBF84B288707AE0009FA8C /* PairedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairedTableViewCell.swift; sourceTree = "<group>"; };
+		84EBF84D288707CB0009FA8C /* UnpairedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnpairedTableViewCell.swift; sourceTree = "<group>"; };
+		84EBF850288709750009FA8C /* СityListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СityListModel.swift"; sourceTree = "<group>"; };
+		84EBF85328870BDF0009FA8C /* JsonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8464A57D28871DE0001384F2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8464A57E28871DF3001384F2 /* UIImageView+Helpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		84EBF8252887037A0009FA8C = {
 			isa = PBXGroup;
 			children = (
@@ -58,13 +84,62 @@
 			children = (
 				84EBF8312887037A0009FA8C /* AppDelegate.swift */,
 				84EBF8332887037A0009FA8C /* SceneDelegate.swift */,
-				84EBF8352887037A0009FA8C /* ViewController.swift */,
+				8464A57D28871DE0001384F2 /* Extensions */,
+				84EBF8472887048C0009FA8C /* JsonFiles */,
+				84EBF849288704B30009FA8C /* ViewControllers */,
+				84EBF84A288705BA0009FA8C /* Cells */,
+				84EBF85228870B740009FA8C /* Services */,
+				84EBF84F288709520009FA8C /* Models */,
 				84EBF8372887037A0009FA8C /* Main.storyboard */,
 				84EBF83A2887037C0009FA8C /* Assets.xcassets */,
 				84EBF83C2887037C0009FA8C /* LaunchScreen.storyboard */,
 				84EBF83F2887037C0009FA8C /* Info.plist */,
 			);
 			path = Infoteh;
+			sourceTree = "<group>";
+		};
+		84EBF8472887048C0009FA8C /* JsonFiles */ = {
+			isa = PBXGroup;
+			children = (
+				8464A57B2887172F001384F2 /* city_list.json */,
+			);
+			path = JsonFiles;
+			sourceTree = "<group>";
+		};
+		84EBF849288704B30009FA8C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				84EBF8352887037A0009FA8C /* СitiesViewController.swift */,
+				8464A580288722A2001384F2 /* CityDetailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84EBF84A288705BA0009FA8C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				84EBF84B288707AE0009FA8C /* PairedTableViewCell.swift */,
+				84EBF84D288707CB0009FA8C /* UnpairedTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		84EBF84F288709520009FA8C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				84EBF850288709750009FA8C /* СityListModel.swift */,
+				84DBFC62288953D0002BBDC7 /* CityWeatherModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		84EBF85228870B740009FA8C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				84EBF85328870BDF0009FA8C /* JsonService.swift */,
+				84DBFC6028895276002BBDC7 /* WebService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +202,7 @@
 			files = (
 				84EBF83E2887037C0009FA8C /* LaunchScreen.storyboard in Resources */,
 				84EBF83B2887037C0009FA8C /* Assets.xcassets in Resources */,
+				8464A57C2887172F001384F2 /* city_list.json in Resources */,
 				84EBF8392887037A0009FA8C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,8 +214,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84EBF8362887037A0009FA8C /* ViewController.swift in Sources */,
+				84EBF85428870BDF0009FA8C /* JsonService.swift in Sources */,
+				84EBF84C288707AE0009FA8C /* PairedTableViewCell.swift in Sources */,
+				84DBFC63288953D0002BBDC7 /* CityWeatherModel.swift in Sources */,
+				84EBF8362887037A0009FA8C /* СitiesViewController.swift in Sources */,
 				84EBF8322887037A0009FA8C /* AppDelegate.swift in Sources */,
+				8464A581288722A2001384F2 /* CityDetailViewController.swift in Sources */,
+				84EBF84E288707CB0009FA8C /* UnpairedTableViewCell.swift in Sources */,
+				84EBF851288709750009FA8C /* СityListModel.swift in Sources */,
+				8464A57F28871DF3001384F2 /* UIImageView+Helpers.swift in Sources */,
+				84DBFC6128895276002BBDC7 /* WebService.swift in Sources */,
 				84EBF8342887037A0009FA8C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +373,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Infoteh/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -296,6 +381,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,6 +402,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Infoteh/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -323,6 +410,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

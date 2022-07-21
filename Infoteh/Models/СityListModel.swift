@@ -1,5 +1,5 @@
 //
-//  СitiesModel.swift
+//  СityListModel.swift
 //  Infoteh
 //
 //  Created by admin on 19.07.2022.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct СityListModel: Decodable {
+struct СityModel: Decodable {
     
     var id: Int = 0
     var name: String = ""

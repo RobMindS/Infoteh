@@ -8,6 +8,9 @@
 import UIKit
 
 class UnpairedTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var pictureImageView: UIImageView!
+    @IBOutlet weak var cityNameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
