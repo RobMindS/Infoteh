@@ -83,8 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				84096DFB2897D55A00258D46 /* AppStoryboard.swift */,
-				84EBF83A2887037C0009FA8C /* Assets.xcassets */,
-				84EBF83F2887037C0009FA8C /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -153,6 +151,8 @@
 				8464A57D28871DE0001384F2 /* Extensions */,
 				84A9197A2897C0F1009A16C9 /* Storyboards */,
 				84864605289A582F00D122B4 /* Supporting Files */,
+				84EBF83A2887037C0009FA8C /* Assets.xcassets */,
+				84EBF83F2887037C0009FA8C /* Info.plist */,
 			);
 			path = Infoteh;
 			sourceTree = "<group>";
