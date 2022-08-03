@@ -1,6 +1,6 @@
 # Infoteh
 Simple test project.
-# Condition
+# Conditions
 1. Create an application using UIKit.
 2. Architecture - MVP.
 3. UI using standard elements.
