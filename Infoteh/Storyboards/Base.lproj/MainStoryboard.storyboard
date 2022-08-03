@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cCQ-hd-9jC">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Cities-->
+        <scene sceneID="IBP-3v-O6o">
+            <objects>
+                <viewController storyboardIdentifier="СitiesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="96L-2g-i22" customClass="СitiesViewController" customModule="Infoteh" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wH7-gB-g5T">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CPW-Vz-ibA">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="96L-2g-i22" id="0gB-Ye-sk0"/>
+                                    <outlet property="delegate" destination="96L-2g-i22" id="qrJ-Rw-CRZ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cKP-Rj-uXS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CPW-Vz-ibA" firstAttribute="leading" secondItem="cKP-Rj-uXS" secondAttribute="leading" id="KPM-Yn-hxu"/>
+                            <constraint firstItem="CPW-Vz-ibA" firstAttribute="top" secondItem="cKP-Rj-uXS" secondAttribute="top" id="Opb-S6-CEN"/>
+                            <constraint firstItem="cKP-Rj-uXS" firstAttribute="trailing" secondItem="CPW-Vz-ibA" secondAttribute="trailing" id="efC-BI-ecs"/>
+                            <constraint firstItem="cKP-Rj-uXS" firstAttribute="bottom" secondItem="CPW-Vz-ibA" secondAttribute="bottom" id="fWm-wU-tQr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Cities" id="0yD-yM-JGX">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="ajT-Do-C2t">
+                            <connections>
+                                <action selector="searchButtonAction:" destination="96L-2g-i22" id="vKi-2F-nLs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchButton" destination="ajT-Do-C2t" id="6NJ-pp-Ufq"/>
+                        <outlet property="tableView" destination="CPW-Vz-ibA" id="CzL-ai-Jc9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J8U-f1-g6b" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2084.057971014493" y="96.428571428571431"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s4K-jw-NiB">
+            <objects>
+                <navigationController storyboardIdentifier="navVC" automaticallyAdjustsScrollViewInsets="NO" id="cCQ-hd-9jC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="d3N-9b-lC9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="96L-2g-i22" kind="relationship" relationship="rootViewController" id="FCH-sd-T2z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gsn-iG-Rjh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1173.913043478261" y="96.428571428571431"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

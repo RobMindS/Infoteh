@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct СityModel: Decodable {
+struct CityModel: Decodable {
     
     var id: Int = 0
     var name: String = ""

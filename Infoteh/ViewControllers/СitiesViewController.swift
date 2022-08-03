@@ -7,67 +7,42 @@
 
 import UIKit
 
-class СitiesViewController: UIViewController, UISearchBarDelegate {
-
+class СitiesViewController: UIViewController, UISearchBarDelegate, CityPresenterDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIBarButtonItem!
     var searchBar: UISearchBar!
     var btnCancelSearch: UIBarButtonItem!
     
-    let jsonService = JsonService()
-    var cities: [СityModel] = []
-    var filterCities: [СityModel] = []
-
-    //Constants
+    private var cities = [CityModel]()
+    private var filterCities = [CityModel]()
+    
+    private let presenter = CityPresenter()
+    
+    // MARK: - Constants
     struct Constants {
-        static let cityJsonListPath: String = "city_list"
         static let cellHeight: CGFloat = 100
         static let searchBarHeight: CGFloat = 40
-        static let imageUrlForPaired: String = "https://infotech.gov.ua/storage/img/Temp3.png"
-        static let imageUrlForUnpaired: String = "https://infotech.gov.ua/storage/img/Temp1.png"
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getCities()
-        
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        
+        setTableView()
+        presenter.setViewDelegate(delegate: self)
+        presenter.getCities()
         hideKeyboardWhenTappedAround()
     }
     
     
-    //MARK: Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-            
-        case "cityDetail":
-            guard let detailVC = segue.destination as? CityDetailViewController else { return }
-            if let data = sender as? СityModel {
-                detailVC.city = data
-            }
-            
-        default:
-            break
-        }
+    func setTableView() {
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.register(UINib(nibName: "CityTableViewCell", bundle: nil), forCellReuseIdentifier: "CityTableViewCell")
     }
     
     
-    func getCities() {
-        jsonService.loadJson(path: Constants.cityJsonListPath, completionHandler: { result in
-            DispatchQueue.main.async {
-                guard let cityList = result else { return }
-                self.cities = cityList
-                self.filterCities = cityList
-                self.tableView.reloadData()
-            }
-        })
-    }
-
-
     @IBAction func searchButtonAction(_ sender: UIBarButtonItem) {
         searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: Constants.searchBarHeight))
         searchBar.placeholder = "Search movie"
@@ -91,8 +66,10 @@ class СitiesViewController: UIViewController, UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.cities = self.filterCities.filter{$0.name.lowercased().hasPrefix(searchText.lowercased()) }
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.cities = self.filterCities.filter{$0.name.lowercased().hasPrefix(searchText.lowercased()) }
+            self.tableView.reloadData()
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -112,10 +89,28 @@ class СitiesViewController: UIViewController, UISearchBarDelegate {
             nav.view.endEditing(true)
         }
     }
+    
+    
+    // MARK: Presenter Delegate
+    func presentCities(cities: [CityModel]) {
+        self.cities = cities
+        self.filterCities = cities
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func openCityDetailVC(city: CityModel) {
+        let cityDetailVC = CityDetailViewController.instantiateFromAppStoryboard(appStoryboard: .CityDetailStoryboard)
+        cityDetailVC.city = city
+        self.navigationController?.pushViewController(cityDetailVC, animated: true)
+    }
+    
 }
 
 
-
+// MARK: - UITableViewDataSource, - UITableViewDelegate
 extension СitiesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,17 +118,10 @@ extension СitiesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0 {
-            guard let pairedCell = tableView.dequeueReusableCell(withIdentifier: "pairedCell", for: indexPath) as? PairedTableViewCell else { return UITableViewCell() }
-            pairedCell.pictureImageView.downloaded(from: Constants.imageUrlForPaired)
-            pairedCell.cityNameLabel.text = cities[indexPath.row].name
-            return pairedCell
-        } else {
-            guard let unpairedCell = tableView.dequeueReusableCell(withIdentifier: "unpairedCell", for: indexPath) as? UnpairedTableViewCell else { return UITableViewCell() }
-            unpairedCell.pictureImageView.downloaded(from: Constants.imageUrlForUnpaired)
-            unpairedCell.cityNameLabel.text = cities[indexPath.row].name
-            return unpairedCell
-        }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityTableViewCell", for: indexPath) as? CityTableViewCell else { return UITableViewCell() }
+        cell.setCityData(index: indexPath.row, cityModel: cities[indexPath.row])
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -141,7 +129,7 @@ extension СitiesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "cityDetail", sender: cities[indexPath.row])
+        presenter.didTapCity(city: cities[indexPath.row])
     }
     
 }

@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class CityDetailViewController: UIViewController {
+class CityDetailViewController: UIViewController, DetailCityPresenterDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -19,25 +19,18 @@ class CityDetailViewController: UIViewController {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var degreeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var minTempLabel: UILabel!
-    @IBOutlet weak var maxTempLabel: UILabel!
+    @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var windSpeedLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     
     let mf = MeasurementFormatter()
+    
     private var headerTopConstraint: NSLayoutConstraint!
     private var headerHeightConstraint: NSLayoutConstraint!
     
-    var city: СityModel?
-    let webService = WebService()
+    var city: CityModel?
     
-    
-    // MARK: - Constants
-    struct Constants {
-        static fileprivate let latitudinalMeters: Double = 10000
-        static fileprivate let longitudinalMeters: Double = 10000
-        static fileprivate let maxCenterCoordinateDistance: Double = 200000
-    }
+    private var presenter = DetailCityPresenter()
     
     
     override func viewDidLoad() {
@@ -45,6 +38,7 @@ class CityDetailViewController: UIViewController {
         
         setViews()
         arrangeConstraints()
+        presenter.setViewDelegate(delegate: self)
         getCityWeatherData()
     }
     
@@ -78,20 +72,6 @@ class CityDetailViewController: UIViewController {
         weatherView.layer.cornerRadius = 10
     }
     
-    func setMapCoordinates() {
-        guard let data = city else { return }
-        let oahuCenter = CLLocation(latitude: data.coord.lat, longitude: data.coord.lon)
-        let region = MKCoordinateRegion(
-            center: oahuCenter.coordinate,
-            latitudinalMeters: Constants.latitudinalMeters,
-            longitudinalMeters: Constants.longitudinalMeters)
-        mapView.setCameraBoundary(
-            MKMapView.CameraBoundary(coordinateRegion: region),
-            animated: true)
-        
-        let zoomRange = MKMapView.CameraZoomRange(maxCenterCoordinateDistance: Constants.maxCenterCoordinateDistance)
-        mapView.setCameraZoomRange(zoomRange, animated: true)
-    }
     
     func arrangeConstraints() {
         headerTopConstraint = mapView.topAnchor
@@ -109,27 +89,8 @@ class CityDetailViewController: UIViewController {
     
     func getCityWeatherData() {
         guard let data = city else { return }
-        
-        webService.getCityWeather(lat: String(data.coord.lat), lon: String(data.coord.lon), completionHandler: { result in
-            DispatchQueue.main.async {
-                guard let cityWeatherData = result else { return }
-                self.cityNameLabel.text = data.name
-                let date = Date()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateStyle = .long
-                self.dateLabel.text = dateFormatter.string(from: date)
-                self.currentWeatherLabel.text = "Current Weather"
-                let icon: String = cityWeatherData.weather.first?.icon ?? ""
-                self.iconImageView.downloaded(from: "https://openweathermap.org/img/w/\(icon).png")
-                self.degreeLabel.text = "\(self.convertTemp(temp: cityWeatherData.main.temp, from: .kelvin, to: .celsius))"
-                let description: String = cityWeatherData.weather.first?.description ?? ""
-                self.descriptionLabel.text = description
-                self.minTempLabel.text = "min temp: \(self.convertTemp(temp: cityWeatherData.main.tempMin, from: .kelvin, to: .celsius))"
-                self.maxTempLabel.text = "max temp: \(self.convertTemp(temp: cityWeatherData.main.tempMax, from: .kelvin, to: .celsius))"
-                self.windSpeedLabel.text = "\(cityWeatherData.wind.speed) m/s"
-                self.humidityLabel.text = "\(cityWeatherData.main.humidity) %"
-            }
-        })
+        self.cityNameLabel.text = data.name
+        presenter.getCityWeather(lat: String(data.coord.lat), lon: String(data.coord.lon))
     }
     
     func convertTemp(temp: Double, from inputTempType: UnitTemperature, to outputTempType: UnitTemperature) -> String {
@@ -138,6 +99,31 @@ class CityDetailViewController: UIViewController {
         let input = Measurement(value: temp, unit: inputTempType)
         let output = input.converted(to: outputTempType)
         return mf.string(from: output)
+    }
+    
+    func setMapCoordinates() {
+        guard let data = city else { return }
+        presenter.setMapCoordinates(latitude: data.coord.lat, longitude: data.coord.lon)
+    }
+    
+    
+    // MARK: Presenter Delegate
+    func presentCityWeather(cityWeatherData: CityWeatherModel) {
+        DispatchQueue.main.async {
+            let date = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .long
+            self.dateLabel.text = dateFormatter.string(from: date)
+            self.currentWeatherLabel.text = "Current Weather"
+            let icon: String = cityWeatherData.weather.first?.icon ?? ""
+            self.iconImageView.downloaded(from: "https://openweathermap.org/img/w/\(icon).png")
+            self.degreeLabel.text = "\(self.convertTemp(temp: cityWeatherData.main.temp, from: .kelvin, to: .celsius))"
+            let description: String = cityWeatherData.weather.first?.description ?? ""
+            self.descriptionLabel.text = description
+            self.tempLabel.text = "min/max temp:  \(self.convertTemp(temp: cityWeatherData.main.tempMin, from: .kelvin, to: .celsius)) / \(self.convertTemp(temp: cityWeatherData.main.tempMax, from: .kelvin, to: .celsius))"
+            self.windSpeedLabel.text = "\(cityWeatherData.wind.speed) m/s"
+            self.humidityLabel.text = "\(cityWeatherData.main.humidity) %"
+        }
     }
     
 }
